@@ -81,7 +81,6 @@ done
 # $ go get -u -v github.com/justjanne/powerline-go
 # $ git clone https://github.com/powerline/fonts.git --depth=1
 # $ cd ./fonts && ./install.sh && cd .. && rm -rf ./fonts
-# *MacOS: iTerm2 users need to set both the Regular font and the Non-ASCII Font in "iTerm > Preferences > Profiles > Text" to use a patched font (https://github.com/powerline/fonts).
 function _update_ps1() {
     PS1="$($GOPATH/bin/powerline-go -error $?)"
 }
@@ -125,4 +124,9 @@ if [ -e "$HOME/.ssh/config" ]; then
               | tr ' ' '\n' \
             )" \
         scp sftp ssh
+fi
+
+# Setup pyenv on MacOS
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
 fi

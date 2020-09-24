@@ -47,11 +47,13 @@ shopt -s checkwinsize
 
 # enable programmable completion features.
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+    if [ -r /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    elif [ -r /etc/bash_completion ]; then
+        . /etc/bash_completion
+    elif [ -r /usr/local/etc/profile.d/bash_completion.sh ]; then
+        . /usr/local/etc/profile.d/bash_completion.sh
+    fi
 fi
 
 # source local bash-completion scripts
@@ -79,6 +81,7 @@ done
 # $ go get -u -v github.com/justjanne/powerline-go
 # $ git clone https://github.com/powerline/fonts.git --depth=1
 # $ cd ./fonts && ./install.sh && cd .. && rm -rf ./fonts
+# *MacOS: iTerm2 users need to set both the Regular font and the Non-ASCII Font in "iTerm > Preferences > Profiles > Text" to use a patched font (https://github.com/powerline/fonts).
 function _update_ps1() {
     PS1="$($GOPATH/bin/powerline-go -error $?)"
 }

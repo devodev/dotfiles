@@ -2,6 +2,8 @@
 filetype indent plugin on
 syntax on
 set background=dark
+" Fix for iTerm2
+let g:solarized_termtrans = 1
 colorscheme solarized
 set termguicolors
 set wildmenu
@@ -22,6 +24,8 @@ set confirm
 set laststatus=2
 set ruler
 set nostartofline
+set modeline
+set modelines=5
 
 " Insert real tab on-demand with shift-TAB
 inoremap <S-Tab> <C-V><Tab>
